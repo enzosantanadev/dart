@@ -1,0 +1,13 @@
+import 'dart:math';
+
+void main() {
+  int N = 10;
+
+  for (int i = 1; i <= N; i++) {
+    int a = pow(2, i - 1).toInt();
+    int b = 5 * i;
+    int c = 100 - (i - 1) * 10;
+
+    print("$a $b $c");
+  }
+}
