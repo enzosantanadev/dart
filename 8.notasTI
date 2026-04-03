@@ -1,0 +1,60 @@
+void main() {
+  List candidatos = [
+    ["1001", "CC", "ana", "F", 3000],
+    ["1002", "SI", "joaozinho", "M", 2000],
+    ["1003", "CC", "zeca", "M", 2600],
+    ["1004", "SI", "paulo", "M", 4000],
+    ["1005", "CC", "maria", "F", 2700],
+  ];
+
+  int total = 0;
+  int totalMasc = 0;
+  int totalFem = 0;
+
+  int menorPontMasc = 999999;
+  String nomeMenorMasc = "";
+
+  int maiorPontMascSI = -1;
+  String codMaiorMascSI = "";
+
+  print("CC + 2500 pontos");
+
+  for (var c in candidatos) {
+    String codigo = c[0];
+    String curso = c[1];
+    String nome = c[2];
+    String sexo = c[3];
+    int pontuacao = c[4];
+
+    total++;
+
+    if (sexo == "M") {
+      totalMasc++;
+
+      if (pontuacao < menorPontMasc) {
+        menorPontMasc = pontuacao;
+        nomeMenorMasc = nome;
+      }
+
+      if (curso == "SI" && pontuacao > maiorPontMascSI) {
+        maiorPontMascSI = pontuacao;
+        codMaiorMascSI = codigo;
+      }
+    } else if (sexo == "F") {
+      totalFem++;
+    }
+
+    if (curso == "CC" && pontuacao > 2500) {
+      print("Código: $codigo | Nome: $nome | Pontuação: $pontuacao");
+    }
+  }
+
+  double percMasc = (totalMasc / total) * 100;
+  double percFem = (totalFem / total) * 100;
+
+  print("RESULTADOS");
+  print("homem com menor pontuação: $nomeMenorMasc");
+  print("codigo do homem com maior pontuação em SI: $codMaiorMascSI");
+  print("% masculino: ${percMasc.toStringAsFixed(2)}%");
+  print("% feminino: ${percFem.toStringAsFixed(2)}%");
+}
