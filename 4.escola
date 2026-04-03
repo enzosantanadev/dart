@@ -1,0 +1,61 @@
+void main() {
+  List alunos = [
+    ["33333", "joao", "M", 7.0, 8.0, 6.0, 10],
+    ["22222", "maria", "F", 9.0, 8.5, 9.5, 5],
+    ["11111", "aninha", "F", 6.0, 7.0, 8.0, 20]
+  ];
+
+  double somaTurma = 0;
+  double somaFeminino = 0;
+  int totalAlunos = 0;
+  int aprovados = 0;
+  int totalFeminino = 0;
+
+  double maiorMediaMasc = -1;
+  double maiorMediaFem = -1;
+  String matMaiorMasc = "";
+  String matMaiorFem = "";
+
+  for (var aluno in alunos) {
+    String matricula = aluno[0];
+    String sexo = aluno[2];
+    double n1 = aluno[3];
+    double n2 = aluno[4];
+    double n3 = aluno[5];
+    int faltas = aluno[6];
+
+    double media = (n1 + n2 + n3) / 3;
+
+    somaTurma += media;
+    totalAlunos++;
+
+    if (media >= 7 && faltas <= 18) {
+      aprovados++;
+
+      if (sexo == "M" && media > maiorMediaMasc) {
+        maiorMediaMasc = media;
+        matMaiorMasc = matricula;
+      }
+
+      if (sexo == "F" && media > maiorMediaFem) {
+        maiorMediaFem = media;
+        matMaiorFem = matricula;
+      }
+    }
+
+    if (sexo == "F") {
+      somaFeminino += media;
+      totalFeminino++;
+    }
+  }
+
+  double mediaTurma = somaTurma / totalAlunos;
+  double percentual = (aprovados / totalAlunos) * 100;
+  double mediaFem = totalFeminino > 0 ? somaFeminino / totalFeminino : 0;
+
+  print("media da turma: ${mediaTurma.toStringAsFixed(2)}");
+  print("% aprovados: ${percentual.toStringAsFixed(2)}%");
+  print("melhor masculino: $matMaiorMasc");
+  print("melhor feminino: $matMaiorFem");
+  print("media feminina: ${mediaFem.toStringAsFixed(2)}");
+}
