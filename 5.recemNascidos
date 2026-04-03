@@ -1,0 +1,58 @@
+void main() {
+  List recemNascidos = [
+    ["julya", "F", 2.5],
+    ["joaozinho", "M", 1.8],
+    ["maria", "F", 4.5],
+    ["pedro paulo", "M", 3.2],
+    ["maria clara", "F", 2.0]
+  ];
+
+  int total = 0;
+  int baixoPeso = 0;
+  int normal = 0;
+  int altoPeso = 0;
+
+  double maiorPesoFem = -1;
+  String nomeMaiorFem = "";
+
+  for (var rn in recemNascidos) {
+    String nome = rn[0];
+    String sexo = rn[1];
+    double peso = rn[2];
+
+    String classificacao;
+
+    if (peso >= 0 && peso <= 2) {
+      classificacao = "magro";
+      baixoPeso++;
+    } else if (peso > 2 && peso <= 4) {
+      classificacao = "dentro do peso";
+      normal++;
+    } else {
+      classificacao = "gordo";
+      altoPeso++;
+    }
+
+    total++;
+
+    if (sexo == "F" && peso > maiorPesoFem) {
+      maiorPesoFem = peso;
+      nomeMaiorFem = nome;
+    }
+
+    print("nome: $nome");
+    print("sexo: $sexo");
+    print("classificação: $classificacao\n");
+  }
+
+
+  double percBaixo = (baixoPeso / total) * 100;
+  double percNormal = (normal / total) * 100;
+  double percAlto = (altoPeso / total) * 100;
+
+
+  print("maior peso feminino: $nomeMaiorFem");
+  print("baixo Peso: ${percBaixo.toStringAsFixed(2)}%");
+  print("normal: ${percNormal.toStringAsFixed(2)}%");
+  print("alto Peso: ${percAlto.toStringAsFixed(2)}%");
+}
