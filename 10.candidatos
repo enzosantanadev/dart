@@ -1,1 +1,71 @@
+void main() {
+  List candidatos = [
+    ["Ana", "F", 25, true],
+    ["João", "M", 50, true],
+    ["Maria", "F", 28, false],
+    ["Carlos", "M", 40, true],
+    ["Clara", "F", 22, true],
+    ["Pedro", "M", 46, false],
+    ["Juliana", "F", 35, true],
+    ["Lucas", "M", 55, true]
+  ];
 
+  int totalMasc = 0;
+  int totalFem = 0;
+
+  int somaIdadeHomExp = 0;
+  int totalHomExp = 0;
+
+  int homMais45 = 0;
+
+  int mulMenos30Exp = 0;
+
+  int menorIdadeFemExp = 999;
+  String nomeMenorFemExp = "";
+
+  for (var c in candidatos) {
+    String nome = c[0];
+    String sexo = c[1];
+    int idade = c[2];
+    bool experiencia = c[3];
+
+    if (sexo == "M") {
+      totalMasc++;
+
+      if (experiencia) {
+        somaIdadeHomExp += idade;
+        totalHomExp++;
+      }
+
+      if (idade > 45) {
+        homMais45++;
+      }
+
+    } else if (sexo == "F") {
+      totalFem++;
+
+     
+      if (idade < 30 && experiencia) {
+        mulMenos30Exp++;
+      }
+
+
+      if (experiencia && idade < menorIdadeFemExp) {
+        menorIdadeFemExp = idade;
+        nomeMenorFemExp = nome;
+      }
+    }
+  }
+
+  
+  double mediaIdadeHomExp = totalHomExp > 0 ? somaIdadeHomExp / totalHomExp : 0;
+
+  double percHomMais45 = totalMasc > 0 ? (homMais45 / totalMasc) * 100 : 0;
+
+  print("homens: $totalMasc");
+  print("mulheres: $totalFem");
+  print("média idade dos homens com experiência: ${mediaIdadeHomExp.toStringAsFixed(2)}");
+  print("% homens mais de 45 anos: ${percHomMais45.toStringAsFixed(2)}%");
+  print("mulheres menos 30 anos e experiência: $mulMenos30Exp");
+  print("candidata menor idade e experiência: $nomeMenorFemExp");
+}
