@@ -1,0 +1,6 @@
+void main() {
+  int numero = 4627;
+  String numeroStr = numero.toString(); 
+  String numeroInvertido = numeroStr.split('').reversed.join(''); 
+  print(numeroInvertido); 
+}
