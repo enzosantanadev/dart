@@ -1,0 +1,18 @@
+void main() {
+  List<Map<String, dynamic>> bois = [
+    {'nome': 'boi ben', 'peso': 450.5},
+    {'nome': 'vaca leitona', 'peso': 600.0},
+    {'nome': 'vaca ana', 'peso': 350.2},
+    {'nome': 'boi leleco', 'peso': 490.3},
+    {'nome': 'boi flor', 'peso': 520.0},
+  ];
+  double pesoMinimo = 450.0;
+  double pesoMaximo = 500.0;
+  print('bois com peso entre $pesoMinimo e $pesoMaximo kg:');
+  for (var boi in bois) {
+    double peso = boi['peso'];
+    if (peso >= pesoMinimo && peso <= pesoMaximo) {
+      print('${boi['nome']} - Peso: ${boi['peso']} kg');
+    }
+  }
+}
