@@ -1,0 +1,7 @@
+void main() {
+  List<int> vetor1 = [1, 3, 5, 7, 9];
+  List<int> vetor2 = [2, 4, 6, 8, 10];
+  List<int> vetor3 = []..addAll(vetor1)..addAll(vetor2);
+  vetor3.sort();
+  print("Vetor 3 ordenado: $vetor3");
+}
