@@ -1,0 +1,14 @@
+void main() {
+  List<int> numeros = [3, 8, 5, 3, 8, 7, 3, 7, 3, 7];
+  Map<int, int> contagem = {};
+  for (var numero in numeros) {
+    if (contagem.containsKey(numero)) {
+      contagem[numero] = contagem[numero]! + 1;
+    } else {
+      contagem[numero] = 1;
+    }
+  }
+  contagem.forEach((chave, valor) {
+    print("$chave – $valor");
+  });
+}
