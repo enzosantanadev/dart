@@ -1,0 +1,36 @@
+void main() {
+  var professores = [
+    {'codigo': 1, 'nome': 'joao', 'sexo': 'M', 'horas': 80},
+    {'codigo': 2, 'nome': 'maria', 'sexo': 'F', 'horas': 90},
+    {'codigo': 3, 'nome': 'zeca', 'sexo': 'M', 'horas': 75},
+    {'codigo': 4, 'nome': 'aninha', 'sexo': 'F', 'horas': 100},
+    {'codigo': 5, 'nome': 'josue', 'sexo': 'M', 'horas': 120},
+  ];
+
+  double totalSalarioHomens = 0;
+  double totalSalarioMulheres = 0;
+  int contadorHomens = 0;
+  int contadorMulheres = 0;
+
+  for (var p in professores) {
+    double salarioBruto = (p['horas'] as int) * 12.30;
+    double desconto = (p['sexo'] == 'M') ? 0.10 : 0.05;
+    double salarioLiquido = salarioBruto * (1 - desconto);
+
+    print("codigo: ${p['codigo']} nome: ${p['nome']} salario bruto: R\$ ${salarioBruto.toStringAsFixed(2)} salario liquido: R\$ ${salarioLiquido.toStringAsFixed(2)}");
+
+    if (p['sexo'] == 'M') {
+      totalSalarioHomens += salarioLiquido;
+      contadorHomens++;
+    } else {
+      totalSalarioMulheres += salarioLiquido;
+      contadorMulheres++;
+    }
+  }
+
+  double mediaSalarioHomens = (contadorHomens > 0) ? totalSalarioHomens / contadorHomens : 0;
+  double mediaSalarioMulheres = (contadorMulheres > 0) ? totalSalarioMulheres / contadorMulheres : 0;
+
+  print("\nmedia salario liquido homens: R\$ ${mediaSalarioHomens.toStringAsFixed(2)}");
+  print("media salario liquido mulheres: R\$ ${mediaSalarioMulheres.toStringAsFixed(2)}");
+}
